@@ -57,8 +57,10 @@ nav ul li a {
 nav ul li a:hover {
     color: #ff92f0; /* Slightly lighter hover color */
 }
-
-/* Hero Section */
+.services{
+    text-align: center;
+    padding-top: 20px;
+}
 .hero {
     background: linear-gradient(135deg, #9f88ff, #ff92f0); /* Slightly lightened gradient */
     padding: 100px 40px;
@@ -110,6 +112,9 @@ nav ul li a:hover {
     text-align: center;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     z-index: 1;
+    font-size: larger;
+    cursor: pointer;
+    font-weight: bold;
 }
 
 /* Gradient Border */
