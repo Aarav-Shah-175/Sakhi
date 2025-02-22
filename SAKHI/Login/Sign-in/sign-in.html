@@ -70,7 +70,6 @@
 						<span>Register</span>
 					</button>
 				</form>
-				<button id="SOS" onclick="callSOS()">SOS</button>
 				<img src="../images/image-2.png" alt="" class="image-2" />
 			</div>
 		</div>
@@ -78,22 +77,6 @@
 		<script>
 			let otpSent = false;
 			let otpVerified = false;
-
-			let SOSclickCount = 0;
-			function callSOS() {
-				SOSclickCount++;
-				if (SOSclickCount === 1) {
-					timer = setTimeout(() => {
-						SOSclickCount = 0;
-					}, 7000);
-				}
-
-				if (SOSclickCount === 3) {
-					clearTimeout(timer);
-					alert("SOS sent!");
-					SOSclickCount = 0;
-				}
-			}
 
 			function validateAndSendOTP(event) {
 				event.preventDefault();

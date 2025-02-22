@@ -80,19 +80,6 @@ a {
 	right: -129px;
 }
 
-#SOS {
-	position: absolute;
-	top: 180px;
-	right: -450px;
-	border-radius: 100%;
-	width: 50%;
-	height: 30%;
-	background-color: red;
-	font-size: xx-large;
-	color: #fff;
-	border: none;
-}
-
 form {
 	width: 100%;
 	position: relative;
