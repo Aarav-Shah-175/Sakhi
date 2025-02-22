@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sakhi - About</title>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: "Arial", sans-serif;
+        background-color: #f9f9f9;
+        color: #333;
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+    header {
+        background: linear-gradient(135deg, #b06be6, #6d5adf); /* Darker gradient */
+        padding: 20px 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    header .logo h1 {
+        color: #fff;
+        font-size: 36px;
+        font-weight: bold;
+    }
+
+    header .logo p {
+        color: #fff;
+        font-size: 14px;
+        margin-top: 5px;
+    }
+    nav ul {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+    }
+
+    nav ul li {
+        font-size: 16px;
+    }
+
+    nav ul li a {
+        color: #fff;
+        font-weight: 500;
+        transition: color 0.3s;
+    }
+
+    nav ul li a:hover {
+        color: #ff92f0; /* Slightly lighter hover color */
+    }
+
+    .about {
+        background-color: #fff;
+        padding: 50px 20px;
+        text-align: center;
+    }
+
+    .about-container {
+        max-width: 800px;
+        margin: auto;
+    }
+
+    .about h1 {
+        color: #6d5adf;
+        font-size: 32px;
+        margin-bottom: 20px;
+    }
+
+    .about p, .about ul {
+        color: #333;
+        font-size: 18px;
+        line-height: 1.6;
+    }
+
+    .about ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .about ul li {
+        margin: 15px 0;
+        font-size: 18px;
+        text-align: left;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding-left: 20px;
+    }
+
+    .about ul li::before {
+        content: "✔";
+        color: #6d5adf;
+        font-weight: bold;
+        font-size: 20px;
+    }
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <h1>Sakhi</h1>
+            <p>Empowering Women, Empowering the World</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="sakhi.html">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><select style="background-color: #18007a; border: none; height: 20px;" id="language" onchange="changeLanguage()">
+                        <option value="en">English</option>
+                        <option value="hi">हिन्दी</option>
+                    </select>
+                </li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="about">
+        <div class="about-container">
+            <h1>About Sakhi</h1>
+            <p>
+                Sakhi is more than just a website—it is a movement dedicated to empowering women by providing them with the resources, support, and opportunities they need to build a better future. In today’s digital age, access to information and community support can make a huge difference in the lives of women. Sakhi ensures that every woman, regardless of her background, has a safe and reliable platform to seek guidance, find opportunities, and connect with like-minded individuals.
+            </p>
+            <br>
+            <h2>What We Offer</h2>
+            <ul>
+                <li>💼 Job Opportunities – A dedicated section to help women find employment, internships, and skill development programs that match their potential and aspirations.</li>
+                <li>🏥 Medical Services – Easy access to healthcare facilities, telemedicine consultations, mental health support, and information on women’s health and well-being.</li>
+                <li>🏛 Government Schemes – A comprehensive guide to financial aid programs, education scholarships, entrepreneurship grants, and welfare schemes designed to uplift women.</li>
+                <li>🗣 Community Forum – A secure and interactive space where women can share experiences, seek advice, discuss challenges, and find strength in a supportive community.</li>
+            </ul>
+            <br>
+            <h2>Why Sakhi Matters</h2>
+            <br>
+            <p>
+                Despite advancements in society, women still face significant challenges in terms of education, employment, healthcare, and safety. Many remain unaware of the opportunities and support available to them. Sakhi bridges this gap by acting as a one-stop platform where women can access crucial information and take charge of their futures.  
+            </p>
+    
+            <p>
+                By offering career guidance, health resources, government benefits, and a strong support system, Sakhi aims to foster independence, confidence, and self-reliance among women. Our mission is to ensure that every woman, no matter where she comes from, has the opportunity to grow, achieve her dreams, and build a life of dignity and respect.
+            </p>
+            <br>
+            <h1><strong>Together, we empower. Together, we rise.</strong></h1>
+        </div>
+    </section>
+    
+</body>
+</html>
