@@ -98,6 +98,25 @@ nav ul li a:hover {
 	color: #fff;
 }
 
+#SOS {
+	width: 170px;
+	height: 50px;
+	background-color: red;
+	color: #fff;
+	border: 3px solid black;
+	box-shadow: none;
+	padding: 10px 25px;
+	border-radius: 30px;
+	font-size: 18px;
+	font-weight: bold;
+	translate: 29px;
+}
+
+#SOS:hover {
+	box-shadow: 0 0 20px red, 0 0 30px #ff92f0, 0 0 45px #9f88ff;
+	transition: box-shadow 0.3s ease-in-out;
+}
+
 .signin-link:hover {
 	text-decoration: underline;
 }
@@ -247,7 +266,7 @@ footer {
 }
 
 .footer-section {
-	width: 40%;
+	width: 35%;
 }
 
 .footer-section h3 {
