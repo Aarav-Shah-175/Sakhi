@@ -136,11 +136,20 @@ nav ul li a:hover {
 #talk {
 	text-align: center;
 	position: relative;
-	background: white;
+	--bg: #000;
+	--hover-bg: linear-gradient(455deg, #9f88ff, #ff92f0);
+	--hover-text: #000;
+	color: #fff;
+	cursor: pointer;
+
+	background: var(--bg);
+
 	padding: 15px;
 	border-radius: 10px;
 	width: 1000 px; /* Match the width of other buttons */
 	text-align: center;
+	transition: 0.2s;
+
 	font-size: larger;
 	cursor: pointer;
 	font-weight: bold;
@@ -151,11 +160,23 @@ nav ul li a:hover {
 	align-self: center; /* Center horizontally */
 }
 
+#talk:hover {
+	color: var(--hover-text);
+	transform: translate(-0.25rem, -0.25rem);
+	background: var(--hover-bg);
+	box-shadow: 0.25rem 0.25rem var(--bg);
+}
+
+#talk:active {
+	transform: translate(0);
+	box-shadow: none;
+}
+
 #talk::before {
 	content: "";
 	position: absolute;
 	inset: -4px; /* Controls border thickness */
-	background: linear-gradient(455deg, #9f88ff, #ff92f0);
+	/* background: linear-gradient(455deg, #9f88ff, #ff92f0); */
 	border-radius: 14px;
 	z-index: -1;
 }
