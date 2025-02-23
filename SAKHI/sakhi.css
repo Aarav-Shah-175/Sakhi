@@ -66,8 +66,9 @@ nav ul li a:hover {
 		#9f88ff,
 		#ff92f0
 	); /* Slightly lightened gradient */
-	padding: 100px 40px;
+	padding: 40px 40px;
 	text-align: center;
+	height: 250px;
 }
 
 .hero h2 {
@@ -284,46 +285,56 @@ footer {
 	align-items: center;
 }
 
-
-
 /* /---------------------------------- */
 /* Dark Mode Styles */
 body.dark-mode {
-    background-color: #121212;
-    color: #ffffff;
+	background-color: #121212;
+	color: #ffffff;
 }
 
 body.dark-mode header {
-    background: linear-gradient(135deg, #6d5adf, #4a3d9f); /* Darker gradient for dark mode */
+	background: linear-gradient(
+		135deg,
+		#6d5adf,
+		#4a3d9f
+	); /* Darker gradient for dark mode */
 }
 
 body.dark-mode .hero {
-    background: linear-gradient(135deg, #7a6bff, #ff6bd6); /* Adjusted gradient for dark mode */
+	background: linear-gradient(
+		135deg,
+		#7a6bff,
+		#ff6bd6
+	); /* Adjusted gradient for dark mode */
 }
 
 body.dark-mode .feature-box {
-    background-color: #1e1e1e;
-    color: #ffffff;
+	background-color: #1e1e1e;
+	color: #ffffff;
 }
 
 body.dark-mode .feature-box::before {
-    background: linear-gradient(455deg, #7a6bff, #ff6bd6); /* Adjusted gradient for dark mode */
+	background: linear-gradient(
+		455deg,
+		#7a6bff,
+		#ff6bd6
+	); /* Adjusted gradient for dark mode */
 }
 
 body.dark-mode .feature-box::after {
-    background-color: #1e1e1e;
+	background-color: #1e1e1e;
 }
 
 body.dark-mode .cta-button {
-    background-color: #ffffff;
-    color: #ff6bd6; /* Adjusted button text color for dark mode */
+	background-color: #ffffff;
+	color: #ff6bd6; /* Adjusted button text color for dark mode */
 }
 
 body.dark-mode .cta-button:hover {
-    background-color: #ff6bd6; /* Adjusted button hover color for dark mode */
-    color: #ffffff;
+	background-color: #ff6bd6; /* Adjusted button hover color for dark mode */
+	color: #ffffff;
 }
 
 body.dark-mode footer {
-    background: #7a6bff; /* Adjusted footer background for dark mode */
+	background: #7a6bff; /* Adjusted footer background for dark mode */
 }
