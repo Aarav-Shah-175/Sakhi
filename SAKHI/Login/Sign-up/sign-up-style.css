@@ -4,7 +4,7 @@
 }
 @font-face {
 	font-family: "Muli-SemiBold";
-	src: url("/SAKHI/Login/fonts/muli/Muli-SemiBold.ttf")
+	src: url("/SAKHI/Login/fonts/muli/Muli-SemiBold.ttf");
 }
 * {
 	-webkit-box-sizing: border-box;
@@ -104,8 +104,16 @@ h3 {
 }
 
 .form-holder {
+	display: flex;
+	align-items: center;
 	position: relative;
-	margin-bottom: 21px;
+}
+
+.form-holder input {
+	width: 100%;
+	/* padding: 10px; */
+	border: none;
+	border-radius: 5px;
 }
 .form-holder span {
 	position: absolute;
@@ -243,4 +251,11 @@ h3 {
 	}
 }
 
-/*# sourceMappingURL=style.css.map */
+.error {
+	color: red;
+	font-size: 12px;
+	margin-top: 5px;
+	display: block;
+	height: 16px; /* Ensures space is always reserved */
+	text-align: left;
+}

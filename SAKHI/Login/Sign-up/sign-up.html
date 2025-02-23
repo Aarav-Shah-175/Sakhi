@@ -4,8 +4,7 @@
 		<meta charset="utf-8" />
 		<title>Sakhi-sign-up</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-		<link rel="stylesheet" href="/SAKHI/Login/fonts/linearicons/style.css">
+		<link rel="stylesheet" href="/SAKHI/Login/fonts/linearicons/style.css" />
 		<link rel="stylesheet" href="sign-up-style.css" />
 	</head>
 
@@ -13,84 +12,75 @@
 		<div class="wrapper">
 			<div class="inner">
 				<img src="../images/image-1.png" alt="" class="image-1" />
-				<form>
+				<form id="signupForm">
 					<h3>Sakhi</h3>
 					<div class="form-holder">
-						<span class="lnr lnr-user"></span>
+						<span class="lnr lnr-user" style="margin-right: 600px"></span>
 						<input
 							type="text"
 							class="form-control"
-							placeholder="Username"
+							placeholder="&nbsp;&nbsp;&nbsp;Username"
 							id="username"
 							required
-							pattern="^[a-zA-Z]+(\s+[a-zA-Z]+)*$"
-							title="Only letters allowed"
-							oninput="checkFormValidity()"
 						/>
 					</div>
+					<span class="error" id="usernameError"></span>
 					<div class="form-holder">
 						<span class="lnr lnr-phone-handset"></span>
 						<input
 							type="text"
 							class="form-control"
-							placeholder="Phone Number"
+							placeholder="&nbsp;&nbsp;&nbsp;Phone Number"
 							id="phone"
 							required
-							pattern="^[0-9]{10}$"
-							title="Enter a valid 10-digit phone number"
-							oninput="checkFormValidity()"
 						/>
 					</div>
+					<span class="error" id="phoneError"></span>
 					<div class="form-holder">
 						<span class="lnr lnr-envelope"></span>
 						<input
 							type="text"
 							class="form-control"
-							placeholder="Aadhaar Number"
+							placeholder="&nbsp;&nbsp;&nbsp;Aadhaar Number"
 							id="aadhaar"
 							required
-							pattern="^[0-9]{12}$"
-							title="Enter a valid 12-digit Aadhaar number"
-							oninput="checkFormValidity()"
 						/>
 					</div>
+					<span class="error" id="aadhaarError"></span>
 					<div class="form-holder">
 						<span class="lnr lnr-lock"></span>
 						<input
 							type="password"
 							class="form-control"
-							placeholder="Password"
+							placeholder="&nbsp;&nbsp;&nbsp;Password"
 							id="password"
 							required
-							pattern="^(?=.*[A-Z])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,}$"
-							title="Password must be at least 8 characters, include an uppercase letter, and a special character"
-							oninput="checkFormValidity()"
 						/>
-						<input type="checkbox" onclick="showPassword()" />Show Password
 					</div>
+					<span class="error" id="passwordError"></span>
 					<div class="form-holder">
 						<span class="lnr lnr-lock"></span>
 						<input
 							type="password"
 							class="form-control"
-							placeholder="Confirm Password"
+							placeholder="&nbsp;&nbsp;&nbsp;Confirm Password"
 							id="confirm-password"
 							required
-							oninput="checkFormValidity()"
 						/>
 					</div>
+					<span class="error" id="confirmPasswordError"></span>
+					<input type="checkbox" onclick="showPassword()" /> Show Password
+
 					<div id="otp-section" style="display: none">
 						<div class="form-holder">
 							<span class="lnr lnr-key"></span>
 							<input
 								type="text"
 								class="form-control"
-								placeholder="Enter OTP"
+								placeholder="&nbsp;&nbsp;&nbsp;Enter OTP"
 								id="otp"
 								required
 								pattern="^[0-9]{4}$"
-								title="Enter a valid 4-digit OTP"
-								oninput="checkFormValidity()"
 							/>
 						</div>
 						<button
@@ -98,14 +88,17 @@
 							onclick="resendOTP()"
 							class="global-btn"
 							id="resend-btn"
+							disabled
 						>
-							Resend OTP &nbsp;<span id="timer"></span>
+							Resend OTP &nbsp;<span id="timer">30</span>
 						</button>
 					</div>
+
 					<button
 						class="global-btn"
-						type="submit"
-						onclick="validateAndSendOTP(event)"
+						type="button"
+						id="register-btn"
+						onclick="validateAndSendOTP()"
 					>
 						<span>Register</span>
 					</button>
@@ -117,87 +110,130 @@
 		<script>
 			let otpSent = false;
 			let otpVerified = false;
+			let timerInterval;
 
-			function validateAndSendOTP(event) {
-				event.preventDefault();
+			document
+				.getElementById("signupForm")
+				.addEventListener("submit", function (event) {
+					event.preventDefault();
+					if (!otpVerified) {
+						alert("Please verify OTP first.");
+						return;
+					}
+					alert("Registration successful!");
+					this.submit();
+				});
 
-				const password = document.getElementById("password").value;
-				const confirmPassword =
-					document.getElementById("confirm-password").value;
-				const otpField = document.getElementById("otp");
+			function validateAndSendOTP() {
+				let username = document.getElementById("username").value.trim();
+				let phone = document.getElementById("phone").value.trim();
+				let aadhaar = document.getElementById("aadhaar").value.trim();
+				let password = document.getElementById("password").value.trim();
+				let confirmPassword = document
+					.getElementById("confirm-password")
+					.value.trim();
 
-				if (password !== confirmPassword) {
-					alert("Passwords do not match");
-					return;
+				let isValid = true;
+
+				// Reset error messages
+				document
+					.querySelectorAll(".error")
+					.forEach((el) => (el.textContent = ""));
+
+				// Username validation
+				if (!/^[A-Za-z ]+$/.test(username)) {
+					document.getElementById("usernameError").textContent =
+						"Only alphabets and spaces allowed.";
+					isValid = false;
 				}
 
+				// Phone validation (10 digits)
+				if (!/^[0-9]{10}$/.test(phone)) {
+					document.getElementById("phoneError").textContent =
+						"Phone number must be 10 digits.";
+					isValid = false;
+				}
+
+				// Aadhaar validation (12 digits)
+				if (!/^[0-9]{12}$/.test(aadhaar)) {
+					document.getElementById("aadhaarError").textContent =
+						"Aadhaar must be 12 digits.";
+					isValid = false;
+				}
+
+				// Password validation
+				if (
+					!/(?=.*[A-Z])(?=.*[!@#$%^&])[A-Za-z0-9!@#$%^&]{8,}/.test(password)
+				) {
+					document.getElementById("passwordError").textContent =
+						"Password must have 1 uppercase, 1 special character, and at least 8 characters.";
+					isValid = false;
+				}
+
+				// Confirm password validation
+				if (password !== confirmPassword) {
+					document.getElementById("confirmPasswordError").textContent =
+						"Passwords do not match.";
+					isValid = false;
+				}
+
+				if (!isValid) return; // Stop execution if any validation fails
+
+				// If OTP is already verified, submit form
 				if (otpVerified) {
 					alert("Registration successful!");
-					document.querySelector("form").submit(); // Submit the form
+					document.getElementById("signupForm").submit();
 					return;
 				}
 
-				// If OTP is not sent yet, send it
+				// If OTP is not sent yet, send OTP
 				if (!otpSent) {
-					alert("OTP sent to " + document.getElementById("phone").value);
 					document.getElementById("otp-section").style.display = "block";
+					alert("OTP sent to " + phone);
 					otpSent = true;
 					startTimer();
 					return;
 				}
-
-				// If OTP is entered and valid, allow form submission
-				if (otpField.value.match(/^\d{4}$/)) {
-					alert("OTP Verified! Registration successful.");
-					otpVerified = true;
-					document.querySelector("form").submit();
-				} else {
-					alert("Please enter a valid 4-digit OTP.");
-				}
 			}
 
-			function resendOTP() {
-				if (!otpSent && !otpVerified) {
-					alert("OTP resent to " + document.getElementById("phone").value);
-					startTimer();
-				}
-			}
-
-			function showPassword() {
-				var x = document.getElementById("password");
-				if (x.type === "password") {
-					x.type = "text";
-				} else {
-					x.type = "password";
-				}
-			}
 			function startTimer() {
 				let timeLeft = 30;
-				let resent = false;
 				document.getElementById("resend-btn").disabled = true;
-				otpSent = false;
-				let timerElement = document.getElementById("timer");
-				let interval = setInterval(() => {
-					timerElement.textContent = timeLeft;
-					if (timeLeft <= 0 && resent) {
-						clearInterval(interval);
-						document.getElementById("resend-btn").disabled = false;
-						timerElement.textContent = "";
-					} else if (timeLeft <= 0) {
-						clearInterval(interval);
-						document.getElementById("resend-btn").disabled = false;
-						timerElement.textContent = "30";
-					}
+				timerInterval = setInterval(() => {
+					document.getElementById("timer").textContent = timeLeft;
 					timeLeft--;
-					if (timeLeft <= 0) resent = true;
+					if (timeLeft < 0) {
+						clearInterval(timerInterval);
+						document.getElementById("resend-btn").disabled = false;
+						document.getElementById("timer").textContent = "Resend OTP";
+					}
 				}, 1000);
 			}
 
-			function checkFormValidity() {
-				const form = document.querySelector("form");
-				const registerBtn = document.getElementById("register-btn");
-				registerBtn.disabled = !form.checkValidity();
+			function resendOTP() {
+				alert("OTP resent!");
+				startTimer();
 			}
+
+			function showPassword() {
+				let password = document.getElementById("password");
+				let confirmPassword = document.getElementById("confirm-password");
+				if (password.type === "password") {
+					password.type = "text";
+					confirmPassword.type = "text";
+				} else {
+					password.type = "password";
+					confirmPassword.type = "password";
+				}
+			}
+
+			document.getElementById("otp").addEventListener("input", function () {
+				if (this.value.match(/^\d{4}$/)) {
+					otpVerified = true;
+					alert("OTP Verified! You can now register.");
+					document.getElementById("register-btn").disabled = false;
+				}
+			});
 		</script>
 	</body>
 </html>
