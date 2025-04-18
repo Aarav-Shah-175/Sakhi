@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Talk to a Sakhi</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to bottom right, #ffe5ec, #fcd5ce);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .chat-container {
+      background: #ffffff;
+      width: 100%;
+      max-width: 480px;
+      height: 85vh;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      border-radius: 18px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border: 2px solid #f67280;
+    }
+
+    .chat-header {
+      background: #f67280;
+      padding: 1rem;
+      color: white;
+      font-weight: bold;
+      text-align: center;
+      font-size: 1.3rem;
+    }
+
+    .chat-messages {
+      flex: 1;
+      padding: 1rem;
+      overflow-y: auto;
+      background: #fff9f9;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .message {
+      margin: 10px 0;
+      max-width: 75%;
+      padding: 10px 15px;
+      border-radius: 16px;
+      line-height: 1.4;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .message.bot {
+      background-color: #ffe5ec;
+      align-self: flex-start;
+      border-top-left-radius: 0;
+    }
+
+    .message.user {
+      background-color: #f67280;
+      color: white;
+      align-self: flex-end;
+      border-top-right-radius: 0;
+    }
+
+    .chat-input {
+      display: flex;
+      border-top: 1px solid #eee;
+      padding: 10px;
+      background: #fff;
+    }
+
+    .chat-input input {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      background: #fef1f3;
+      outline: none;
+      font-size: 1rem;
+    }
+
+    .chat-input button {
+      margin-left: 10px;
+      padding: 10px 16px;
+      border: none;
+      background: #f67280;
+      color: white;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.2s ease;
+    }
+
+    .chat-input button:hover {
+      background: #e85c70;
+    }
+  </style>
+</head>
+<body>
+
+<div class="chat-container">
+  <div class="chat-header">Talk to a Sakhi</div>
+  <div class="chat-messages" id="chat-box"></div>
+  <div class="chat-input">
+    <input type="text" id="user-input" placeholder="Type your message..." />
+    <button onclick="sendMessage()">Send</button>
+  </div>
+</div>
+
+<script>
+  const chatBox = document.getElementById("chat-box");
+  const input = document.getElementById("user-input");
+
+  let step = 1;
+  let supportType = "";
+
+  const initialMessages = [
+    "Hi! I’m SakhiBot. I’m here to help you. Can you tell me what kind of support you’re looking for today?",
+    "Is this about health, safety, employment, or emotional support?"
+  ];
+
+  // Show initial greeting messages
+  window.onload = () => {
+    showBotMessage(initialMessages[0]);
+    setTimeout(() => showBotMessage(initialMessages[1]), 1000);
+  };
+
+  function showBotMessage(message) {
+    const msg = document.createElement("div");
+    msg.className = "message bot";
+    msg.textContent = message;
+    chatBox.appendChild(msg);
+    chatBox.scrollTop = chatBox.scrollHeight;
+  }
+
+  function showUserMessage(message) {
+    const msg = document.createElement("div");
+    msg.className = "message user";
+    msg.textContent = message;
+    chatBox.appendChild(msg);
+    chatBox.scrollTop = chatBox.scrollHeight;
+  }
+
+  function sendMessage() {
+    let msg = input.value.trim();
+    if (msg === "") return;
+
+    showUserMessage(msg);
+
+    if (step === 0) {
+      // Move to next step after the initial greeting
+      step = 1;
+    } else if (step === 1) {
+      let userInput = msg.toLowerCase().trim();
+
+      const keywords = {
+        health: ["health", "helth", "medical", "doctor"],
+        safety: ["safety", "safe", "danger", "secure"],
+        employment: ["employment", "job", "work", "employmnt", "career"],
+        emotional: ["emotional", "mental", "feel", "stress", "support"]
+      };
+
+      supportType = "";
+
+      for (const [key, synonyms] of Object.entries(keywords)) {
+        for (const word of synonyms) {
+          if (userInput.includes(word)) {
+            supportType = key;
+            break;
+          }
+        }
+        if (supportType) break;
+      }
+
+      if (!supportType) {
+        setTimeout(() => showBotMessage("Sorry, I didn't catch that. Please type one of: health, safety, employment, or emotional support."), 600);
+        input.value = "";
+        return;
+      }
+
+      step = 2;
+
+      switch (supportType) {
+        case "health":
+          setTimeout(() => showBotMessage("Are you looking for medical assistance or information?"), 600);
+          break;
+        case "safety":
+          setTimeout(() => showBotMessage("Are you in immediate danger or need help with legal support?"), 600);
+          break;
+        case "employment":
+          setTimeout(() => showBotMessage("Are you looking for job opportunities or skill development?"), 600);
+          break;
+        case "emotional":
+          setTimeout(() => showBotMessage("Would you like to talk to a counselor or get community support?"), 600);
+          break;
+      }
+    } else if (step === 2) {
+      setTimeout(() => {
+        showBotMessage("Thank you. I’m connecting you to the right Sakhi now...");
+        input.disabled = true;
+      }, 600);
+      step = 3;
+    }
+
+    input.value = "";
+  }
+</script>
+
+</body>
+</html>
