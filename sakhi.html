@@ -29,9 +29,10 @@
                     </select>
                 </li>
                 <li>
-                    <button id="logout-btn" style="display: none; background-color: red; color: white; border: none; padding: 10px 15px; cursor: pointer;;">
+                    <!-- Changed button to an anchor link -->
+                    <a href="#" id="logout-link"    >
                         Logout
-                    </button>
+                    </a>
                 </li>
             </ul>
         </nav>
@@ -96,15 +97,16 @@
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
 
-        // Show logout button if logged in
-        const logoutBtn = document.getElementById("logout-btn");
+        // Show logout link if logged in
+        const logoutLink = document.getElementById("logout-link");
         onAuthStateChanged(auth, (user) => {
-            logoutBtn.style.display = user ? "block" : "none";
+            logoutLink.style.display = user ? "block" : "none";
         });
 
-        logoutBtn.addEventListener("click", () => {
+        logoutLink.addEventListener("click", (event) => {
+            event.preventDefault();  // Prevents default link behavior
             signOut(auth).then(() => {
-                window.location.href = "Login/Sign-in/sign-in.html";
+                window.location.href = "Login/Sign-in/sign-in.html";  // Redirect to sign-in page
             }).catch((error) => console.error("Logout Error:", error));
         });
 

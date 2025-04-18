@@ -61,7 +61,7 @@ nav ul li a {
 	padding: 15px;
 	margin-bottom: 15px;
 	border-radius: 5px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 .apply-btn {
 	background: #6d5adf;
@@ -71,6 +71,9 @@ nav ul li a {
 	border-radius: 5px;
 	cursor: pointer;
 	margin-top: 10px;
+}
+.apply-btn:hover{
+	background-color: #462ae3;
 }
 footer {
 	text-align: center;

@@ -120,32 +120,38 @@ nav ul li a:hover {
 	font-weight: bold;
 	translate: 29px;
 	margin-right: 60px;
-	position: fixed; /* stays in the same spot even if you scroll */
+	position: absolute; /* stays in the same spot even if you scroll */
     bottom: 670px;     /* distance from the bottom of the screen */
     right: 645px;      /* distance from the right of the screen */
     z-index: 1000;    /* ensures it appears above other elements */
 	
 }
 
-.logout-btn{
-	
-		visibility: hidden;  /* keeps space reserved, avoids shifting */
-		opacity: 0;
-		transition: opacity 0.3s ease-in-out;
-		position: absolute;
-		top: 20px;
-		right: 20px;
-		background-color: rgb(170, 44, 212);
-		color: white;
-		border: none;
-		padding: 10px 15px;
-		cursor: pointer;
+.logout-btn {
+	visibility: hidden; /* keeps space reserved, avoids shifting */
+	opacity: 0;
+	transition: opacity 0.3s ease-in-out;
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	background: none;
+	color: #fff;
+	border: none;
+	padding: 10px 15px;
+	cursor: pointer;
+	font-size: 16px;
+	font-weight: 500;
+	background: none !important;
+	background-color: transparent !important;
+
 }
 
-.logout-btn:hover{
-	box-shadow: 0 0 20px blueviolet, 0 0 30px #ff92f0, 0 0 45px #9f88ff;
-	transition: box-shadow 0.3s ease-in-out;
+.logout-btn:hover {
+	color: #ff92f0;
+	text-decoration: none;
+	transition: color 0.3s ease-in-out;
 }
+
 
 #SOS:hover {
 	box-shadow: 0 0 20px red, 0 0 30px #ff92f0, 0 0 45px #9f88ff;
