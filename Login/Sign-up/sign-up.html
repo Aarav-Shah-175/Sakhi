@@ -115,7 +115,7 @@
                 .then((userCredential) => {
                     alert("Registration Successful!");
                     console.log("User registered:", userCredential.user);
-                    location.replace("../sakhi.html"); // ✅ Correct redirect
+                    location.replace("/sakhi.html"); 
                 })
                 .catch((error) => {
                     if (error.code === "auth/email-already-in-use") {
