@@ -66,7 +66,7 @@
             signInWithEmailAndPassword(auth, email, password)
                 .then((userCredential) => {
                     alert("Login Successful!");
-                    window.location.href = "/sakhi.html"; // Redirect to homepage
+                    window.location.href="../sakhi.html"; // ✅ correct path
                 })
                 .catch((error) => {
                     alert("Error: " + error.message);

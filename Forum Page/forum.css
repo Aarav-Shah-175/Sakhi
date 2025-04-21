@@ -68,6 +68,9 @@ nav ul li a {
 	margin-top: 10px;
 	cursor: pointer;
 }
+.reply-btn:hover{
+	background-color: #462ae3;
+}
 footer {
 	text-align: center;
 	padding: 10px;

@@ -32,13 +32,13 @@ header {
 }
 
 header .logo h1 {
-	color: black;
+	color: white;
 	font-size: 36px;
 	font-weight: bold;
 }
 
 header .logo p {
-	color: black;
+	color: white;
 	font-size: 14px;
 	margin-top: 5px;
 }
@@ -54,7 +54,7 @@ nav ul li {
 }
 
 nav ul li a {
-	color: black;
+	color: white;
 	font-weight: 500;
 	transition: color 0.3s;
 }
