@@ -1,87 +1,357 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Sakhi Forum</title>
-		<link rel="stylesheet" href="/sakhi.css" />
-		<link rel="stylesheet" href="forum.css" />
-	</head>
-	<body>
-		<header>
-			<div class="logo">
-				<a href="/sakhi.html">
-					<h1>Sakhi Forum</h1>
-				</a>
-				<p>Share, Support, and Empower</p>
-			</div>
-			<nav>
-				<ul>
-					<li><a href="/sakhi.html">Home</a></li>
-					<li><a href="#">Categories</a></li>
-					<li><a href="#">Trending</a></li>
-					<li><a href="#">My Posts</a></li>
-					<li><a href="/SAKHI/Contact/contact.html">Contact</a></li>
-				</ul>
-			</nav>
-		</header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sakhi Forum</title>
+    <link rel="stylesheet" href="/sakhi.css" />
+    <link rel="stylesheet" href="forum.css" />
+    <style>
+      .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        background-color: rgba(0, 0, 0, 0.6);
+        align-items: center;
+        justify-content: center;
+        z-index: 999;
+      }
+      .modal-content {
+        background-color: white;
+        padding: 20px;
+        width: 90%;
+        max-width: 500px;
+        border-radius: 12px;
+      }
+      .modal textarea,
+      .modal input {
+        width: 100%;
+        margin: 10px 0;
+        padding: 10px;
+      }
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <a href="/sakhi.html">
+          <h1>Sakhi Forum</h1>
+        </a>
+        <p>Share, Support, and Empower</p>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="/sakhi.html">Home</a></li>
+          <li><a href="#" id="trending-btn">Trending</a></li>
+          <li><a href="#" id="my-posts-btn">My Posts</a></li>
+          <li><a href="/SAKHI/Contact/contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
 
-		<section class="forum-hero">
-			<h2>Welcome to the Sakhi Community</h2>
-			<p>Engage in discussions, share experiences, and seek advice.</p>
-			<button class="cta-button" style="margin-top: 20px">
-				Start a Discussion
-			</button>
-			<input
-				type="text"
-				class="search-bar"
-				placeholder="Search discussions..."
-			/>
-		</section>
+    <section class="forum-hero">
+      <h2>Welcome to the Sakhi Community</h2>
+      <p>Engage in discussions, share experiences, and seek advice.</p>
+      <button class="cta-button" id="start-discussion" style="margin-top: 20px">
+        Start a Discussion
+      </button>
+      <input
+        type="text"
+        class="search-bar"
+        placeholder="Search discussions..."
+      />
+    </section>
 
-		<section class="forum-content">
-			<div class="post-container">
-				<div class="post">
-					<h3>How to balance work and family life?</h3>
-					<p>Posted by Ananya - 2 hours ago</p>
-					<p>
-						Looking for tips on managing work responsibilities while taking care
-						of my family...
-					</p>
-					<button class="reply-btn">Reply</button>
-					<button class="reply-btn">View Comments</button>
-				</div>
-				<div class="post">
-					<h3>Government schemes for women entrepreneurs</h3>
-					<p>Posted by Priya - 5 hours ago</p>
-					<p>
-						Can someone guide me on the best government initiatives available
-						for women-owned startups?
-					</p>
-					<button class="reply-btn">Reply</button>
-					<button class="reply-btn">View Comments</button>
-				</div>
-			</div>
-		</section>
+    <section class="forum-content">
+      <div class="post-container" id="post-container">
+        <!-- Posts will load here -->
+      </div>
+    </section>
 
-		<footer>
-			<p>&copy; 2025 Sakhi. All rights reserved.</p>
-		</footer>
-	</body>
+    <footer>
+      <p>&copy; 2025 Sakhi. All rights reserved.</p>
+    </footer>
 
-	<script type="module">
-		import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
-	  
-		const auth = getAuth();
-	  
-		onAuthStateChanged(auth, (user) => {
-		  if (!user) {
-			// User is NOT logged in → Redirect to sign-in page
-			if (!window.location.pathname.includes("About") && !window.location.pathname.includes("Contact")) {
-			  window.location.href = "/SAKHI/Login/Sign-in/sign-in.html";
-			}
-		  }
-		});
-	  </script>
-	  
+    <!-- Start Discussion Modal -->
+    <div id="discussion-modal" class="modal hidden">
+      <div class="modal-content">
+        <h3>Start a New Discussion</h3>
+        <input type="text" id="discussion-title" placeholder="Title" />
+        <textarea
+          id="discussion-content"
+          placeholder="What's on your mind?"
+        ></textarea>
+        <button class="cta-button" id="submit-discussion">Post</button>
+        <button class="close-modal">Cancel</button>
+      </div>
+    </div>
+
+    <!-- Comment Modal -->
+    <div id="comment-modal" class="modal hidden">
+      <div class="modal-content">
+        <h3>Reply to Discussion</h3>
+        <textarea
+          id="comment-text"
+          placeholder="Write your comment..."
+        ></textarea>
+        <button class="cta-button" id="submit-comment">Reply</button>
+        <button class="close-modal">Cancel</button>
+      </div>
+    </div>
+
+    <!-- View Comments Modal -->
+    <div id="view-comments-modal" class="modal hidden">
+      <div class="modal-content">
+        <h3>Comments</h3>
+        <div id="comments-container"></div>
+        <button class="close-modal">Close</button>
+      </div>
+    </div>
+
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+      import {
+        getFirestore,
+        collection,
+        addDoc,
+        getDocs,
+        doc,
+        updateDoc,
+        getDoc,
+        serverTimestamp,
+        onSnapshot,
+        query,
+        where,
+        orderBy,
+      } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+      import {
+        getAuth,
+        onAuthStateChanged,
+      } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyAaQ4DJbUm05ZdDgFIMj9NntgGi6YVio18",
+        authDomain: "sakhi-3466.firebaseapp.com",
+        databaseURL:
+          "https://sakhi-3466-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "sakhi-3466",
+        storageBucket: "sakhi-3466.appspot.com",
+        messagingSenderId: "707741212212",
+        appId: "1:707741212212:web:e80f988e11c5c0f9b1b461",
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+      const auth = getAuth();
+
+      let currentUser = null;
+      let selectedPostId = null;
+      let currentFilter = "all"; // 'all', 'trending', 'my-posts'
+      let likedPosts = {}; // Track which posts the user has liked
+
+      onAuthStateChanged(auth, async (user) => {
+        if (!user) {
+          window.location.href = "/Login/Sign-in/sign-in.html";
+        } else {
+          currentUser = user;
+          // Load user's liked posts from localStorage
+          const storedLikes = localStorage.getItem(`likedPosts_${user.uid}`);
+          if (storedLikes) {
+            likedPosts = JSON.parse(storedLikes);
+          }
+          loadPostsRealtime();
+        }
+      });
+
+      function loadPostsRealtime() {
+        const container = document.getElementById("post-container");
+        let postsQuery;
+
+        if (currentFilter === "trending") {
+          postsQuery = query(collection(db, "posts"), orderBy("likes", "desc"));
+        } else if (currentFilter === "my-posts") {
+          postsQuery = query(
+            collection(db, "posts"),
+            where("author", "==", currentUser.email)
+          );
+        } else {
+          postsQuery = collection(db, "posts");
+        }
+
+        onSnapshot(postsQuery, (snapshot) => {
+          container.innerHTML = "";
+          snapshot.forEach((docSnap) => {
+            const post = docSnap.data();
+            const isLiked = likedPosts[docSnap.id] || false;
+            const div = document.createElement("div");
+            div.className = "post";
+            div.innerHTML = `
+              <h3>${post.title}</h3>
+              <p>Posted by ${post.author} - ${new Date(
+                post.timestamp?.seconds * 1000 || Date.now()
+              ).toLocaleString()}</p>
+              <p>${post.content}</p>
+              <button class="comment-btn" data-id="${docSnap.id}">Reply</button>
+              <button class="view-comments-btn" data-id="${docSnap.id}">View Comments</button>
+              <button class="${isLiked ? "dislike-btn" : "like-btn"}" data-id="${docSnap.id}">
+                ${isLiked ? "Dislike" : "Like"}
+              </button>
+              <span class="like-count">${post.likes || 0}</span>
+            `;
+            container.appendChild(div);
+          });
+        });
+      }
+
+      // Filter buttons event listeners
+      document.getElementById("trending-btn").addEventListener("click", (e) => {
+        e.preventDefault();
+        currentFilter = "trending";
+        loadPostsRealtime();
+        // Update active state
+        document.getElementById("trending-btn").classList.add("active-filter");
+        document
+          .getElementById("my-posts-btn")
+          .classList.remove("active-filter");
+      });
+
+      document.getElementById("my-posts-btn").addEventListener("click", (e) => {
+        e.preventDefault();
+        currentFilter = "my-posts";
+        loadPostsRealtime();
+        // Update active state
+        document.getElementById("my-posts-btn").classList.add("active-filter");
+        document
+          .getElementById("trending-btn")
+          .classList.remove("active-filter");
+      });
+
+      document
+        .getElementById("start-discussion")
+        .addEventListener("click", () => {
+          document
+            .getElementById("discussion-modal")
+            .classList.remove("hidden");
+        });
+
+      document
+        .getElementById("submit-discussion")
+        .addEventListener("click", async () => {
+          const title = document
+            .getElementById("discussion-title")
+            .value.trim();
+          const content = document
+            .getElementById("discussion-content")
+            .value.trim();
+          if (title && content) {
+            await addDoc(collection(db, "posts"), {
+              title,
+              author: currentUser.email,
+              content,
+              timestamp: serverTimestamp(),
+              likes: 0,
+              comments: [],
+            });
+            document.getElementById("discussion-modal").classList.add("hidden");
+            document.getElementById("discussion-title").value = "";
+            document.getElementById("discussion-content").value = "";
+          }
+        });
+
+      document.body.addEventListener("click", async (e) => {
+        if (e.target.classList.contains("comment-btn")) {
+          selectedPostId = e.target.dataset.id;
+          document.getElementById("comment-modal").classList.remove("hidden");
+        }
+
+        if (e.target.classList.contains("view-comments-btn")) {
+          selectedPostId = e.target.dataset.id;
+          const commentsDiv = document.getElementById("comments-container");
+          commentsDiv.innerHTML = "Loading...";
+          const docSnap = await getDoc(doc(db, "posts", selectedPostId));
+          const post = docSnap.data();
+          commentsDiv.innerHTML = post.comments?.length
+            ? post.comments
+                .map(
+                  (c) => `<p><strong>${c.author}:</strong> ${c.text}</p>`
+                )
+                .join("")
+            : "<p>No comments yet.</p>";
+          document
+            .getElementById("view-comments-modal")
+            .classList.remove("hidden");
+        }
+
+        if (
+          e.target.classList.contains("like-btn") ||
+          e.target.classList.contains("dislike-btn")
+        ) {
+          const postId = e.target.dataset.id;
+          const postRef = doc(db, "posts", postId);
+          const snap = await getDoc(postRef);
+          const post = snap.data();
+
+          let newLikeCount = post.likes || 0;
+          const isLiked = likedPosts[postId] || false;
+
+          if (isLiked) {
+            // Dislike - remove like
+            newLikeCount = Math.max(0, newLikeCount - 1);
+            delete likedPosts[postId];
+          } else {
+            // Like - add like
+            newLikeCount += 1;
+            likedPosts[postId] = true;
+          }
+
+          // Update the post in Firestore
+          await updateDoc(postRef, { likes: newLikeCount });
+
+          // Update local storage
+          localStorage.setItem(
+            `likedPosts_${currentUser.uid}`,
+            JSON.stringify(likedPosts)
+          );
+
+          // Update the UI
+          e.target.textContent = isLiked ? "Like" : "Dislike";
+          e.target.className = isLiked ? "like-btn" : "dislike-btn";
+          e.target.nextElementSibling.textContent = newLikeCount;
+        }
+      });
+
+      document
+        .getElementById("submit-comment")
+        .addEventListener("click", async () => {
+          const text = document.getElementById("comment-text").value.trim();
+          if (text && selectedPostId) {
+            const postRef = doc(db, "posts", selectedPostId);
+            const snap = await getDoc(postRef);
+            const oldComments = snap.data().comments || [];
+            oldComments.push({
+              text,
+              author: currentUser.email,
+              timestamp: new Date().toISOString(),
+            });
+            await updateDoc(postRef, { comments: oldComments });
+            document.getElementById("comment-modal").classList.add("hidden");
+            document.getElementById("comment-text").value = "";
+          }
+        });
+
+      document.querySelectorAll(".close-modal").forEach((btn) =>
+        btn.addEventListener("click", () => {
+          document
+            .querySelectorAll(".modal")
+            .forEach((m) => m.classList.add("hidden"));
+        })
+      );
+    </script>
+  </body>
 </html>

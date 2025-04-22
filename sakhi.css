@@ -120,15 +120,15 @@ nav ul li a:hover {
 	font-weight: bold;
 	translate: 29px;
 	margin-right: 60px;
-	position: absolute; /* stays in the same spot even if you scroll */
-    bottom: 670px;     /* distance from the bottom of the screen */
-    right: 645px;      /* distance from the right of the screen */
-    z-index: 1000;    /* ensures it appears above other elements */
+	position: absolute; 
+    bottom: 670px;     
+    right: 645px;      
+    z-index: 1000;    
 	
 }
 
 .logout-btn {
-	visibility: hidden; /* keeps space reserved, avoids shifting */
+	visibility: hidden; 
 	opacity: 0;
 	transition: opacity 0.3s ease-in-out;
 	position: absolute;

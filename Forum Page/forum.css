@@ -37,6 +37,47 @@ nav ul li a {
 	cursor: pointer;
 	font-size: 16px;
 }
+
+.close-modal {
+	background-color: white;
+	color: #6d5adf;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 16px;
+	font-weight: bold;
+	transition: background-color 0.3s, color 0.3s;
+}
+.close-modal:hover {
+	background-color: #ff92f0; /* Slightly lighter button hover color */
+	color: #fff;
+}
+
+.view-comments-btn,
+.comment-btn,
+.like-btn,
+.dislike-btn,
+.close-modal {
+	background-color: white;
+	color: #6d5adf;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 16px;
+	font-weight: bold;
+	transition: background-color 0.3s, color 0.3s;
+}
+.view-comments-btn:hover,
+.comment-btn:hover,
+.like-btn:hover,
+.dislike-btn:hover,
+.close-modal:hover {
+	background-color: #ff92f0; /* Slightly lighter button hover color */
+	color: #fff;
+}
+
 .search-bar {
 	display: block;
 	margin: 20px auto;
@@ -68,7 +109,7 @@ nav ul li a {
 	margin-top: 10px;
 	cursor: pointer;
 }
-.reply-btn:hover{
+.reply-btn:hover {
 	background-color: #462ae3;
 }
 footer {

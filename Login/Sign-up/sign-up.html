@@ -13,6 +13,7 @@
             <img src="../images/image-1.png" alt="" class="image-1">
             <form id="signupForm">
                 <h3>Sakhi</h3>
+
                 <div class="form-holder">
                     <span class="lnr lnr-user"></span>
                     <input type="text" class="form-control" placeholder="Username" id="username" required>
@@ -50,10 +51,11 @@
         </div>
     </div>
 
-    <!-- Firebase Auth Script -->
+    <!-- Firebase Auth + Firestore Script -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
         import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
+        import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyAaQ4DJbUm05ZdDgFIMj9NntgGi6YVio18",
@@ -66,8 +68,9 @@
 
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
+        const db = getFirestore(app);
 
-        document.getElementById("register-btn").addEventListener("click", () => {
+        document.getElementById("register-btn").addEventListener("click", async () => {
             const username = document.getElementById("username").value.trim();
             const phone = document.getElementById("phone").value.trim();
             const email = document.getElementById("email").value.trim();
@@ -83,7 +86,7 @@
 
             let hasError = false;
 
-            // Validation checks
+            // Validation
             if (username.length < 3) {
                 document.getElementById("usernameError").textContent = "Username must be at least 3 characters.";
                 hasError = true;
@@ -111,20 +114,28 @@
 
             if (hasError) return;
 
-            createUserWithEmailAndPassword(auth, email, password)
-                .then((userCredential) => {
-                    alert("Registration Successful!");
-                    console.log("User registered:", userCredential.user);
-                    location.replace("/sakhi.html"); 
-                })
-                .catch((error) => {
-                    if (error.code === "auth/email-already-in-use") {
-                        document.getElementById("emailError").textContent = "Email is already registered.";
-                    } else {
-                        alert(error.message);
-                    }
-                    console.error(error);
+            try {
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
+
+                // Store additional user data in Firestore
+                await setDoc(doc(db, "users", user.uid), {
+                    username,
+                    email,
+                    phone,
                 });
+
+                alert("Registration Successful!");
+                console.log("User registered and profile saved:", user);
+                location.replace("/sakhi.html");
+            } catch (error) {
+                if (error.code === "auth/email-already-in-use") {
+                    document.getElementById("emailError").textContent = "Email is already registered.";
+                } else {
+                    alert("Error: " + error.message);
+                }
+                console.error("Registration failed:", error);
+            }
         });
     </script>
 
