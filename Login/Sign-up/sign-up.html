@@ -1,152 +1,205 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <title>Sakhi-sign-up</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/SAKHI/Login/fonts/linearicons/style.css">
-    <link rel="stylesheet" href="sign-up-style.css">
-</head>
-<body>
-    <div class="wrapper">
-        <div class="inner">
-            <img src="../images/image-1.png" alt="" class="image-1">
-            <form id="signupForm">
-                <h3>Sakhi</h3>
+	<head>
+		<meta charset="utf-8" />
+		<title>Sakhi-sign-up</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="/SAKHI/Login/fonts/linearicons/style.css" />
+		<link rel="stylesheet" href="sign-up-style.css" />
+	</head>
+	<body>
+		<div class="wrapper">
+			<div class="inner">
+				<img src="../images/image-1.png" alt="" class="image-1" />
+				<form id="signupForm">
+					<h3>Sakhi</h3>
 
-                <div class="form-holder">
-                    <span class="lnr lnr-user"></span>
-                    <input type="text" class="form-control" placeholder="Username" id="username" required>
-                </div>
-                <span class="error" id="usernameError"></span>
+					<div class="form-holder">
+						<span class="lnr lnr-user"></span>
+						<input
+							type="text"
+							class="form-control"
+							placeholder="Username"
+							id="username"
+							required
+						/>
+					</div>
+					<span class="error" id="usernameError"></span>
 
-                <div class="form-holder">
-                    <span class="lnr lnr-phone-handset"></span>
-                    <input type="text" class="form-control" placeholder="Phone Number" id="phone" required>
-                </div>
-                <span class="error" id="phoneError"></span>
+					<div class="form-holder">
+						<span class="lnr lnr-phone-handset"></span>
+						<input
+							type="text"
+							class="form-control"
+							placeholder="Phone Number"
+							id="phone"
+							required
+						/>
+					</div>
+					<span class="error" id="phoneError"></span>
 
-                <div class="form-holder">
-                    <span class="lnr lnr-envelope"></span>
-                    <input type="email" class="form-control" placeholder="Email" id="email" required>
-                </div>
-                <span class="error" id="emailError"></span>
+					<div class="form-holder">
+						<span class="lnr lnr-envelope"></span>
+						<input
+							type="email"
+							class="form-control"
+							placeholder="Email"
+							id="email"
+							required
+						/>
+					</div>
+					<span class="error" id="emailError"></span>
 
-                <div class="form-holder">
-                    <span class="lnr lnr-lock"></span>
-                    <input type="password" class="form-control" placeholder="Password" id="password" required>
-                </div>
-                <span class="error" id="passwordError"></span>
+					<div class="form-holder">
+						<span class="lnr lnr-lock"></span>
+						<input
+							type="password"
+							class="form-control"
+							placeholder="Password"
+							id="password"
+							required
+						/>
+					</div>
+					<span class="error" id="passwordError"></span>
 
-                <div class="form-holder">
-                    <span class="lnr lnr-lock"></span>
-                    <input type="password" class="form-control" placeholder="Confirm Password" id="confirm-password" required>
-                </div>
-                <span class="error" id="confirmPasswordError"></span>
+					<div class="form-holder">
+						<span class="lnr lnr-lock"></span>
+						<input
+							type="password"
+							class="form-control"
+							placeholder="Confirm Password"
+							id="confirm-password"
+							required
+						/>
+					</div>
+					<span class="error" id="confirmPasswordError"></span>
 
-                <input type="checkbox" onclick="showPassword()"> Show Password
-                <button class="global-btn" type="button" id="register-btn">Register</button>
-            </form>
-            <img src="../images/image-2.png" alt="" class="image-2">
-        </div>
-    </div>
+					<input type="checkbox" onclick="showPassword()" /> Show Password
+					<button class="global-btn" type="button" id="register-btn">
+						Register
+					</button>
+				</form>
+				<img src="../images/image-2.png" alt="" class="image-2" />
+			</div>
+		</div>
 
-    <!-- Firebase Auth + Firestore Script -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
-        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
-        import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+		<!-- Firebase Auth + Firestore Script -->
+		<script type="module">
+			import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+			import {
+				getAuth,
+				createUserWithEmailAndPassword,
+			} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
+			import {
+				getFirestore,
+				doc,
+				setDoc,
+			} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
 
-        const firebaseConfig = {
-            apiKey: "AIzaSyAaQ4DJbUm05ZdDgFIMj9NntgGi6YVio18",
-            authDomain: "sakhi-3466.firebaseapp.com",
-            projectId: "sakhi-3466",
-            storageBucket: "sakhi-3466.appspot.com",
-            messagingSenderId: "707741212212",
-            appId: "1:707741212212:web:988f0b064677837bb1b461"
-        };
+			const firebaseConfig = {
+				apiKey: "AIzaSyAaQ4DJbUm05ZdDgFIMj9NntgGi6YVio18",
+				authDomain: "sakhi-3466.firebaseapp.com",
+				projectId: "sakhi-3466",
+				storageBucket: "sakhi-3466.appspot.com",
+				messagingSenderId: "707741212212",
+				appId: "1:707741212212:web:988f0b064677837bb1b461",
+			};
 
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
+			const app = initializeApp(firebaseConfig);
+			const auth = getAuth(app);
+			const db = getFirestore(app);
 
-        document.getElementById("register-btn").addEventListener("click", async () => {
-            const username = document.getElementById("username").value.trim();
-            const phone = document.getElementById("phone").value.trim();
-            const email = document.getElementById("email").value.trim();
-            const password = document.getElementById("password").value;
-            const confirmPassword = document.getElementById("confirm-password").value;
+			document
+				.getElementById("register-btn")
+				.addEventListener("click", async () => {
+					const username = document.getElementById("username").value.trim();
+					const phone = document.getElementById("phone").value.trim();
+					const email = document.getElementById("email").value.trim();
+					const password = document.getElementById("password").value;
+					const confirmPassword =
+						document.getElementById("confirm-password").value;
 
-            // Clear previous errors
-            document.getElementById("usernameError").textContent = "";
-            document.getElementById("phoneError").textContent = "";
-            document.getElementById("emailError").textContent = "";
-            document.getElementById("passwordError").textContent = "";
-            document.getElementById("confirmPasswordError").textContent = "";
+					// Clear previous errors
+					document.getElementById("usernameError").textContent = "";
+					document.getElementById("phoneError").textContent = "";
+					document.getElementById("emailError").textContent = "";
+					document.getElementById("passwordError").textContent = "";
+					document.getElementById("confirmPasswordError").textContent = "";
 
-            let hasError = false;
+					let hasError = false;
 
-            // Validation
-            if (username.length < 3) {
-                document.getElementById("usernameError").textContent = "Username must be at least 3 characters.";
-                hasError = true;
-            }
+					// Validation
+					if (username.length < 3) {
+						document.getElementById("usernameError").textContent =
+							"Username must be at least 3 characters.";
+						hasError = true;
+					}
 
-            if (!/^\d{10}$/.test(phone)) {
-                document.getElementById("phoneError").textContent = "Phone number must be 10 digits.";
-                hasError = true;
-            }
+					if (!/^\d{10}$/.test(phone)) {
+						document.getElementById("phoneError").textContent =
+							"Phone number must be 10 digits.";
+						hasError = true;
+					}
 
-            if (!email.includes("@")) {
-                document.getElementById("emailError").textContent = "Invalid email format.";
-                hasError = true;
-            }
+					if (!email.includes("@")) {
+						document.getElementById("emailError").textContent =
+							"Invalid email format.";
+						hasError = true;
+					}
 
-            if (password.length < 6) {
-                document.getElementById("passwordError").textContent = "Password must be at least 6 characters.";
-                hasError = true;
-            }
+					if (password.length < 6) {
+						document.getElementById("passwordError").textContent =
+							"Password must be at least 6 characters.";
+						hasError = true;
+					}
 
-            if (password !== confirmPassword) {
-                document.getElementById("confirmPasswordError").textContent = "Passwords do not match.";
-                hasError = true;
-            }
+					if (password !== confirmPassword) {
+						document.getElementById("confirmPasswordError").textContent =
+							"Passwords do not match.";
+						hasError = true;
+					}
 
-            if (hasError) return;
+					if (hasError) return;
 
-            try {
-                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-                const user = userCredential.user;
+					try {
+						const userCredential = await createUserWithEmailAndPassword(
+							auth,
+							email,
+							password
+						);
+						const user = userCredential.user;
 
-                // Store additional user data in Firestore
-                await setDoc(doc(db, "users", user.uid), {
-                    username,
-                    email,
-                    phone,
-                });
+						// Store additional user data in Firestore
+						await setDoc(doc(db, "users", user.uid), {
+							username,
+							email,
+							phone,
+						});
 
-                alert("Registration Successful!");
-                console.log("User registered and profile saved:", user);
-                location.replace("/sakhi.html");
-            } catch (error) {
-                if (error.code === "auth/email-already-in-use") {
-                    document.getElementById("emailError").textContent = "Email is already registered.";
-                } else {
-                    alert("Error: " + error.message);
-                }
-                console.error("Registration failed:", error);
-            }
-        });
-    </script>
+						alert("Registration Successful!");
+						console.log("User registered and profile saved:", user);
+						location.replace("../sakhi.html");
+					} catch (error) {
+						if (error.code === "auth/email-already-in-use") {
+							document.getElementById("emailError").textContent =
+								"Email is already registered.";
+						} else {
+							alert("Error: " + error.message);
+						}
+						console.error("Registration failed:", error);
+					}
+				});
+		</script>
 
-    <!-- Show Password Script -->
-    <script>
-        function showPassword() {
-            let password = document.getElementById("password");
-            let confirmPassword = document.getElementById("confirm-password");
-            password.type = password.type === "password" ? "text" : "password";
-            confirmPassword.type = confirmPassword.type === "password" ? "text" : "password";
-        }
-    </script>
-</body>
+		<!-- Show Password Script -->
+		<script>
+			function showPassword() {
+				let password = document.getElementById("password");
+				let confirmPassword = document.getElementById("confirm-password");
+				password.type = password.type === "password" ? "text" : "password";
+				confirmPassword.type =
+					confirmPassword.type === "password" ? "text" : "password";
+			}
+		</script>
+	</body>
 </html>
