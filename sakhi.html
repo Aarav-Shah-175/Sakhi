@@ -1,146 +1,198 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sakhi - Empowering Women</title>
-    <link rel="stylesheet" href="sakhi.css">
-</head>
-<body>
-    <header>
-        <div class="logo">
-            <a href="sakhi.html">
-                <h1>Sakhi</h1>
-            </a>
-            <p>Empowering Women, Empowering the World</p>
-        </div>
-        <div class="SOS">
-            <button id="SOS">SOS</button>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="sakhi.html">Home</a></li>
-                <li><a href="About/about.html">About</a></li>
-                <li><a href="Contact/contact.html">Contact</a></li>
-                <li>
-                    <select id="language" style="background-color: #705BDF; border: none; height: 20px; color: white;">
-                        <option value="en">English</option>
-                        <option value="hi">हिन्दी</option>
-                    </select>
-                </li>
-                <li>
-                    <!-- Changed button to an anchor link -->
-                    <a href="#" id="logout-link"    >
-                        Logout
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </header>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Sakhi - Empowering Women</title>
+		<link rel="stylesheet" href="sakhi.css" />
+	</head>
+	<body>
+		<header>
+			<div class="logo">
+				<a href="sakhi.html">
+					<h1>Sakhi</h1>
+				</a>
+				<p>Empowering Women, Empowering the World</p>
+			</div>
+			<div class="SOS">
+				<button id="SOS">SOS</button>
+			</div>
+			<nav>
+				<ul>
+					<li><a href="sakhi.html">Home</a></li>
+					<li><a href="About/about.html">About</a></li>
+					<li><a href="Contact/contact.html">Contact</a></li>
+					<li>
+						<select
+							id="language"
+							style="
+								background-color: #705bdf;
+								border: none;
+								height: 20px;
+								color: white;
+							"
+						>
+							<option value="en">English</option>
+							<option value="hi">हिन्दी</option>
+						</select>
+					</li>
+					<li>
+						<!-- Changed button to an anchor link -->
+						<a href="#" id="logout-link"> Logout </a>
+					</li>
+				</ul>
+			</nav>
+		</header>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h2>Unite for a Change</h2>
-            <p style="margin-top: 10px;">Join us in our mission to empower women worldwide through education, support, and equality.</p>
-            <a href="Login/Sign-up/sign-up.html" class="cta-button" id="signup-link">Become a Sakhi</a>
-            <p style="font-size: small; margin-top: 20px;">
-                <a href="Login/Sign-in/sign-in.html" class="signin-link">Already a member? Sign in</a>
-            </p>
-        </div>
-    </section>
+		<section class="hero">
+			<div class="hero-content">
+				<h2>Unite for a Change</h2>
+				<p style="margin-top: 10px">
+					Join us in our mission to empower women worldwide through education,
+					support, and equality.
+				</p>
+				<a href="Login/Sign-up/sign-up.html" class="cta-button" id="signup-link"
+					>Become a Sakhi</a
+				>
+				<p style="font-size: small; margin-top: 20px">
+					<a href="Login/Sign-in/sign-in.html" class="signin-link"
+						>Already a member? Sign in</a
+					>
+				</p>
+			</div>
+		</section>
 
-    <div class="services">
-        <h2 style="margin-top: 20px;">Services Offered By Sakhi</h2>
-    </div>
-    <div id="buttons" style="display: flex; flex-direction: column; height: 250px;">
-        <section class="features">
-            <button class="feature-box" data-url="Jobs Page/jobs.html">Job Support</button>
-            <button class="feature-box" data-url="Medical/medical.html">Medical Services</button>
-            <button class="feature-box" data-url="Govt Policies/government.html">Govt. Schemes</button>
-            <button class="feature-box" data-url="Forum Page/forum.html">Community Forum</button>
-        </section>
-        <button id="talk" style="margin-bottom: 30px; width: 500px; margin-top: 0px;" data-url="../ChatBot/ChatBot.html">Talk to a Sakhi</button>
-    </div>
+		<div class="services">
+			<h2 style="margin-top: 20px">Services Offered By Sakhi</h2>
+		</div>
+		<div
+			id="buttons"
+			style="display: flex; flex-direction: column; height: 250px"
+		>
+			<section class="features">
+				<button class="feature-box" data-url="Jobs Page/jobs.html">
+					Job Support
+				</button>
+				<button class="feature-box" data-url="Medical/medical.html">
+					Medical Services
+				</button>
+				<button class="feature-box" data-url="Govt Policies/government.html">
+					Govt. Schemes
+				</button>
+				<button class="feature-box" data-url="Forum Page/forum.html">
+					Community Forum
+				</button>
+			</section>
+			<button
+				id="talk"
+				style="margin-bottom: 30px; width: 500px; margin-top: 0px"
+				data-url="ChatBot/ChatBot.html"
+			>
+				Talk to a Sakhi
+			</button>
+		</div>
 
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-section" style="width: 400px; text-align: justify;">
-                <h3>About Us</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                <p>&copy; 2025 Sakhi. All rights reserved.</p>
-            </div>
-            <div class="footer-section">
-                <h3 style="margin-left: 350px;">Follow Us</h3>
-                <div class="media-icons" style="margin-left: 300px;">
-                    <img src="Images/icons8-facebook-50.png" alt="Facebook" style="width: 35px; cursor: pointer;">
-                    <img src="Images/icons8-instagram-50.png" alt="Instagram" style="width: 35px; cursor: pointer;">
-                    <img src="Images/icons8-x-50.png" alt="Twitter" style="width: 37px; height: 35px; cursor: pointer;">
-                    <img src="Images/icons8-youtube-50.png" alt="YouTube" style="width: 43px; cursor: pointer;">
-                </div>
-            </div>
-        </div>
-    </footer>
+		<footer class="footer">
+			<div class="footer-container">
+				<div class="footer-section" style="width: 400px; text-align: justify">
+					<h3>About Us</h3>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+					<p>&copy; 2025 Sakhi. All rights reserved.</p>
+				</div>
+				<div class="footer-section">
+					<h3 style="margin-left: 350px">Follow Us</h3>
+					<div class="media-icons" style="margin-left: 300px">
+						<img
+							src="Images/icons8-facebook-50.png"
+							alt="Facebook"
+							style="width: 35px; cursor: pointer"
+						/>
+						<img
+							src="Images/icons8-instagram-50.png"
+							alt="Instagram"
+							style="width: 35px; cursor: pointer"
+						/>
+						<img
+							src="Images/icons8-x-50.png"
+							alt="Twitter"
+							style="width: 37px; height: 35px; cursor: pointer"
+						/>
+						<img
+							src="Images/icons8-youtube-50.png"
+							alt="YouTube"
+							style="width: 43px; cursor: pointer"
+						/>
+					</div>
+				</div>
+			</div>
+		</footer>
 
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
-        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
+		<script type="module">
+			import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+			import {
+				getAuth,
+				onAuthStateChanged,
+				signOut,
+			} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
 
-        const firebaseConfig = {
-            apiKey: "AIzaSyAaQ4DJbUm05ZdDgFIMj9NntgGi6YVio18",
-            authDomain: "sakhi-3466.firebaseapp.com",
-            projectId: "sakhi-3466",
-            storageBucket: "sakhi-3466.appspot.com",
-            messagingSenderId: "707741212212",
-            appId: "1:707741212212:web:988f0b064677837bb1b461"
-        };
+			const firebaseConfig = {
+				apiKey: "AIzaSyAaQ4DJbUm05ZdDgFIMj9NntgGi6YVio18",
+				authDomain: "sakhi-3466.firebaseapp.com",
+				projectId: "sakhi-3466",
+				storageBucket: "sakhi-3466.appspot.com",
+				messagingSenderId: "707741212212",
+				appId: "1:707741212212:web:988f0b064677837bb1b461",
+			};
 
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
+			const app = initializeApp(firebaseConfig);
+			const auth = getAuth(app);
 
-        // Show logout link if logged in
-        const logoutLink = document.getElementById("logout-link");
-        onAuthStateChanged(auth, (user) => {
-            logoutLink.style.display = user ? "block" : "none";
-        });
+			// Show logout link if logged in
+			const logoutLink = document.getElementById("logout-link");
+			onAuthStateChanged(auth, (user) => {
+				logoutLink.style.display = user ? "block" : "none";
+			});
 
-        logoutLink.addEventListener("click", (event) => {
-            event.preventDefault();  // Prevents default link behavior
-            signOut(auth).then(() => {
-                window.location.href = "Login/Sign-in/sign-in.html";  // Redirect to sign-in page
-            }).catch((error) => console.error("Logout Error:", error));
-        });
+			logoutLink.addEventListener("click", (event) => {
+				event.preventDefault(); // Prevents default link behavior
+				signOut(auth)
+					.then(() => {
+						window.location.href = "Login/Sign-in/sign-in.html"; // Redirect to sign-in page
+					})
+					.catch((error) => console.error("Logout Error:", error));
+			});
 
-        // Restrict access to authenticated users only
-        function restrictAccess(url) {
-            onAuthStateChanged(auth, (user) => {
-                if (user) {
-                    window.location.href = url;
-                } else {
-                    window.location.href = "Login/Sign-in/sign-in.html";
-                }
-            });
-        }
+			// Restrict access to authenticated users only
+			function restrictAccess(url) {
+				onAuthStateChanged(auth, (user) => {
+					if (user) {
+						window.location.href = url;
+					} else {
+						window.location.href = "Login/Sign-in/sign-in.html";
+					}
+				});
+			}
 
-        // Apply access control to all service buttons
-        document.querySelectorAll("[data-url]").forEach(button => {
-            button.addEventListener("click", () => {
-                const url = button.getAttribute("data-url");
-                restrictAccess(url);
-            });
-        });
+			// Apply access control to all service buttons
+			document.querySelectorAll("[data-url]").forEach((button) => {
+				button.addEventListener("click", () => {
+					const url = button.getAttribute("data-url");
+					restrictAccess(url);
+				});
+			});
 
-        // SOS triple-click detection
-        let sosClicks = 0;
-        const sosButton = document.getElementById("SOS");
-        sosButton.addEventListener("click", () => {
-            sosClicks++;
-            if (sosClicks === 3) {
-                sosClicks = 0;
-                alert("SOS Sent");
-                // Optional: You could send a request to backend/SMS API here
-            }
-            setTimeout(() => sosClicks = 0, 3000); // reset count after 3 seconds
-        });
-    </script>
-</body>
+			// SOS triple-click detection
+			let sosClicks = 0;
+			const sosButton = document.getElementById("SOS");
+			sosButton.addEventListener("click", () => {
+				sosClicks++;
+				if (sosClicks === 3) {
+					sosClicks = 0;
+					alert("SOS Sent");
+					// Optional: You could send a request to backend/SMS API here
+				}
+				setTimeout(() => (sosClicks = 0), 3000); // reset count after 3 seconds
+			});
+		</script>
+	</body>
 </html>
