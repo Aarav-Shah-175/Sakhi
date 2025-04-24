@@ -1,85 +1,88 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8" />
-    <title>Sakhi-sign-in</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../fonts/linearicons/style.css">
-    <link rel="stylesheet" href="sign-in-style.css" />
-</head>
+	<head>
+		<meta charset="utf-8" />
+		<title>Sakhi-sign-in</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="../fonts/linearicons/style.css" />
+		<link rel="stylesheet" href="sign-in-style.css" />
+	</head>
 
-<body>
-    <div class="wrapper">
-        <div class="inner">
-            <img src="../images/image-1.png" alt="" class="image-1" />
-            <form id="signinForm">
-                <h3>Sakhi</h3>
-                <div class="form-holder">
-                    <span class="lnr lnr-envelope"></span>
-                    <input
-                        type="email"
-                        class="form-control"
-                        placeholder="Email"
-                        id="email"
-                        required
-                    />
-                </div>
-                <div class="form-holder">
-                    <span class="lnr lnr-lock"></span>
-                    <input
-                        type="password"
-                        class="form-control"
-                        placeholder="Password"
-                        id="password"
-                        required
-                    />
-                    <input type="checkbox" onclick="showPassword()" /> Show Password
-                </div>
-                <button class="global-btn" type="button" id="login-btn">
-                    <span>Login</span>
-                </button>
-            </form>
-            <img src="../images/image-2.png" alt="" class="image-2" />
-        </div>
-    </div>
+	<body>
+		<div class="wrapper">
+			<div class="inner">
+				<img src="../images/image-1.png" alt="" class="image-1" />
+				<form id="signinForm">
+					<h3>Sakhi</h3>
+					<div class="form-holder">
+						<span class="lnr lnr-envelope"></span>
+						<input
+							type="email"
+							class="form-control"
+							placeholder="Email"
+							id="email"
+							required
+						/>
+					</div>
+					<div class="form-holder">
+						<span class="lnr lnr-lock"></span>
+						<input
+							type="password"
+							class="form-control"
+							placeholder="Password"
+							id="password"
+							required
+						/>
+						<input type="checkbox" onclick="showPassword()" /> Show Password
+					</div>
+					<button class="global-btn" type="button" id="login-btn">
+						<span>Login</span>
+					</button>
+				</form>
+				<img src="../images/image-2.png" alt="" class="image-2" />
+			</div>
+		</div>
 
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
-        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
+		<script type="module">
+			import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+			import {
+				getAuth,
+				signInWithEmailAndPassword,
+			} from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
 
-        const firebaseConfig = {
-            apiKey: "AIzaSyAaQ4DJbUm05ZdDgFIMj9NntgGi6YVio18",
-            authDomain: "sakhi-3466.firebaseapp.com",
-            projectId: "sakhi-3466",
-            storageBucket: "sakhi-3466.appspot.com",
-            messagingSenderId: "707741212212",
-            appId: "1:707741212212:web:988f0b064677837bb1b461"
-        };
+			const firebaseConfig = {
+				apiKey: "AIzaSyAaQ4DJbUm05ZdDgFIMj9NntgGi6YVio18",
+				authDomain: "sakhi-3466.firebaseapp.com",
+				projectId: "sakhi-3466",
+				storageBucket: "sakhi-3466.appspot.com",
+				messagingSenderId: "707741212212",
+				appId: "1:707741212212:web:988f0b064677837bb1b461",
+			};
 
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
+			const app = initializeApp(firebaseConfig);
+			const auth = getAuth(app);
 
-        document.getElementById("login-btn").addEventListener("click", () => {
-            const email = document.getElementById("email").value;
-            const password = document.getElementById("password").value;
+			document.getElementById("login-btn").addEventListener("click", () => {
+				const email = document.getElementById("email").value;
+				const password = document.getElementById("password").value;
 
-            signInWithEmailAndPassword(auth, email, password)
-                .then((userCredential) => {
-                    
-                    window.location.href="/sakhi.html";
-                })
-                .catch((error) => {
-                    alert("Error: " + error.message);
-                    console.error(error);	
-                });
-        });
-    </script>
+				signInWithEmailAndPassword(auth, email, password)
+					.then((userCredential) => {
+						window.location.href = "../../sakhi.html";
+					})
+					.catch((error) => {
+						alert("Error: " + error.message);
+						console.error(error);
+					});
+			});
+		</script>
 
-    <script>
-        function showPassword() {
-            const passwordInput = document.getElementById("password");
-            passwordInput.type = passwordInput.type === "password" ? "text" : "password";
-        }
-    </script>
-</body>
+		<script>
+			function showPassword() {
+				const passwordInput = document.getElementById("password");
+				passwordInput.type =
+					passwordInput.type === "password" ? "text" : "password";
+			}
+		</script>
+	</body>
 </html>
