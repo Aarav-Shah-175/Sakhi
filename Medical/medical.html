@@ -4,20 +4,20 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Sakhi - Medical Services</title>
-		<link rel="stylesheet" href="/sakhi.css" />
+		<link rel="stylesheet" href="../sakhi.css" />
 		<link rel="stylesheet" href="medical.css" />
 	</head>
 	<body>
 		<header>
 			<div class="logo">
-				<a href="/sakhi.html">
+				<a href="../sakhi.html">
 					<h1>Sakhi Medical Services</h1>
 				</a>
 				<p style="text-align: left">Access healthcare facilities with ease</p>
 			</div>
 			<nav>
 				<ul>
-					<li><a href="/sakhi.html">Home</a></li>
+					<li><a href="../sakhi.html">Home</a></li>
 					<li><a href="#">Hospitals</a></li>
 					<li><a href="#">Mental Health</a></li>
 					<li><a href="#">Telemedicine</a></li>
@@ -39,7 +39,7 @@
 
 		<section class="medical-listings">
 			<div class="service">
-				<h3>City Women’s Hospital</h3>
+				<h3>City Women's Hospital</h3>
 				<p>Services: Maternity, Gynecology, Pediatrics</p>
 				<p>Location: Delhi, India</p>
 				<button class="apply-btn">View Details</button>
@@ -58,18 +58,23 @@
 	</body>
 
 	<script type="module">
-		import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
-	  
+		import {
+			getAuth,
+			onAuthStateChanged,
+		} from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+
 		const auth = getAuth();
-	  
+
 		onAuthStateChanged(auth, (user) => {
-		  if (!user) {
-			// User is NOT logged in → Redirect to sign-in page
-			if (!window.location.pathname.includes("About") && !window.location.pathname.includes("Contact")) {
-			  window.location.href = "/SAKHI/Login/Sign-in/sign-in.html";
+			if (!user) {
+				// User is NOT logged in → Redirect to sign-in page
+				if (
+					!window.location.pathname.includes("About") &&
+					!window.location.pathname.includes("Contact")
+				) {
+					window.location.href = "../Login/Sign-in/sign-in.html";
+				}
 			}
-		  }
 		});
-	  </script>
-	  
+	</script>
 </html>

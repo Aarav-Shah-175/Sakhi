@@ -4,13 +4,13 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Sakhi - Government Schemes</title>
-		<link rel="stylesheet" href="/sakhi.css" />
+		<link rel="stylesheet" href="../sakhi.css" />
 		<link rel="stylesheet" href="government.css" />
 	</head>
 	<body>
 		<header>
 			<div class="logo">
-				<a href="/sakhi.html">
+				<a href="../sakhi.html">
 					<h1>Sakhi - Government Schemes</h1>
 				</a>
 				<p style="text-align: left">
@@ -19,7 +19,7 @@
 			</div>
 			<nav>
 				<ul>
-					<li><a href="/sakhi.html">Home</a></li>
+					<li><a href="../sakhi.html">Home</a></li>
 					<li><a href="#">Education</a></li>
 					<li><a href="#">Employment</a></li>
 					<li><a href="#">Healthcare</a></li>
@@ -29,11 +29,7 @@
 		</header>
 
 		<section class="schemes-hero">
-			<img
-				src="government-removebg-preview.png"
-				alt=""
-				style="height: 100px"
-			/>
+			<img src="government-removebg-preview.png" alt="" style="height: 100px" />
 			<h2 style="line-height: 40px">Discover Government Schemes for Women</h2>
 			<p>
 				Find schemes related to education, healthcare, employment, and financial
@@ -52,13 +48,21 @@
 				<h3>Pradhan Mantri Matru Vandana Yojana (PMMVY)</h3>
 				<p>Support: Financial aid for pregnant and lactating women</p>
 				<p>Eligibility: Women above 19 years of age</p>
-				<button class="apply-btn"><a href="https://pmmvy.wcd.gov.in/" target="_blank">Learn More</a></button>
+				<button class="apply-btn">
+					<a href="https://pmmvy.wcd.gov.in/" target="_blank">Learn More</a>
+				</button>
 			</div>
 			<div class="scheme">
 				<h3>Beti Bachao Beti Padhao</h3>
 				<p>Support: Education and welfare for girl children</p>
 				<p>Eligibility: Parents of girl children</p>
-				<button class="apply-btn"><a href="https://wcdhry.gov.in/schemes-for-women/beti-bachao-beti-padhao/" target="_blank">Learn More</a></button>
+				<button class="apply-btn">
+					<a
+						href="https://wcdhry.gov.in/schemes-for-women/beti-bachao-beti-padhao/"
+						target="_blank"
+						>Learn More</a
+					>
+				</button>
 			</div>
 		</section>
 
@@ -68,18 +72,23 @@
 	</body>
 
 	<script type="module">
-		import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
-	  
+		import {
+			getAuth,
+			onAuthStateChanged,
+		} from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+
 		const auth = getAuth();
-	  
+
 		onAuthStateChanged(auth, (user) => {
-		  if (!user) {
-			// User is NOT logged in → Redirect to sign-in page
-			if (!window.location.pathname.includes("About") && !window.location.pathname.includes("Contact")) {
-			  window.location.href = "/SAKHI/Login/Sign-in/sign-in.html";
+			if (!user) {
+				// User is NOT logged in → Redirect to sign-in page
+				if (
+					!window.location.pathname.includes("About") &&
+					!window.location.pathname.includes("Contact")
+				) {
+					window.location.href = "/SAKHI/Login/Sign-in/sign-in.html";
+				}
 			}
-		  }
 		});
-	  </script>
-	  
+	</script>
 </html>
